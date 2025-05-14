@@ -25,6 +25,7 @@ export const Private = () => {
         dispatch({type:'logout'})
         navigate('/')
     }
+    
     return (
         <><h3>Esto es privado</h3>
         {store.user && 

@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
-	const handleClick = () => {
-		localStorage.getItem('token') && navigate('/private')
-	}
-	
 	return (
-		<div className="text-center mt-5">
-			<h2>Primero tienes que <Link to={'/register'}>registrarte</Link>, despues <Link to={'/login'}>logearte</Link> y despues podrás acceder al <Link to={'/private'}>area privada</Link></h2>
-			<span className="nav nav-link" onClick={handleClick}>area privada</span>
+		<div className="bg-light min-h-screen flex items-center justify-center text-green-400 font-mono p-4">
+			<div className="bg-gray-950 p-8 rounded-2xl shadow-lg shadow-green-500 text-center max-w-xl p-4 rounded">
+				<h2 className="text-xl">
+					If you don`t have an account: <Link to={'/register'} className="underline hover:text-green-300">Register</Link><br />
+					If you already have an account:  <Link to={'/login'} className="underline hover:text-green-300">Login</Link><br />
+					After login, you can enter the private page: <Link to={'/private'} className="underline hover:text-green-300">Private Page</Link>.
+				</h2>
+			</div>
 		</div>
 	);
-}; 
+};
