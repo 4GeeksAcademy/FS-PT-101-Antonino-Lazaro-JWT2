@@ -9,7 +9,6 @@ export const Private = () => {
         <>
             <h3>{store.user?.email}</h3>
             <button onClick={handleLogout}>logout</button>
-
         </>
     )
 }
