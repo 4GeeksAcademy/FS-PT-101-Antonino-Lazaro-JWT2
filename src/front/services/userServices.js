@@ -12,7 +12,6 @@ userServices.register = async (formData) => {
     });
     if (!resp.ok) throw Error("Something went wrong");
     const data = await resp.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -32,6 +31,8 @@ userServices.login = async (formData) => {
     if (!resp.ok) throw Error("Something went wrong");
     const data = await resp.json();
     console.log(data);
+    localStorage.setItem('token', data.token)
+
     return data;
   } catch (error) {
     console.log(error);
@@ -40,24 +41,25 @@ userServices.login = async (formData) => {
 };
 
 userServices.getUserInfo = async () => {
-  try {
+    try {
     const resp = await fetch(url + "/api/private", {
-        headers:{
-            'Content_Type':'application/json',
-            // pasamos el token que tenemos en el local storage ocmo authorization siempre hay un espacio en 'Bearer '
-            'Authorization':'Bearer ' + localStorage.getItem('token')
-
+        headers: {
+            'Content-Type': 'application/json',
+            //pasamos el token que tenemos en el localstorage como authorization siempre con 'Bearer ' (hay un espacio entre la r y la comilla)
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
     });
     if (!resp.ok) throw Error("Something went wrong");
     const data = await resp.json();
     console.log(data);
-    localStorage.setItem('user',JSON.stringify(data.user))
+    //para almacenar los datos del usuario que es un OBJETO, tenemos que almacenarlos como texto en el localStorage
+    //utilizando JSON.stringify()
+    localStorage.setItem('user', JSON.stringify(data.user))
     return data;
   } catch (error) {
     console.log(error);
     return error;
   }
-};
+}
 
 export default userServices;

@@ -1,25 +1,17 @@
-import React, { useEffect } from "react"
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { Register } from "../components/register.jsx";
-import { Login } from "../components/login.jsx";
-import { Private } from "../components/private.jsx";
-import userServices from "../services/userServices.js";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 export const Home = () => {
-	const {store,dispatch} = useGlobalReducer();
+	const navigate = useNavigate()
+
 	const handleClick = () => {
-		userServices.getUserInfo().then(data=>dispatch({type:'getUserInfo',payload:data.user}))
+		localStorage.getItem('token') && navigate('/private')
 	}
+	
 	return (
 		<div className="text-center mt-5">
-			<h2>1. Register</h2>
-			<Register/>
-			<h2>2. Login</h2>
-			<Login/>
-			<h2>3. Aquí aparecerá el privado</h2>
-			<button onClick={handleClick}>get user info</button>
-			{store.user && <Private/>}
+			<h2>Primero tienes que <Link to={'/register'}>registrarte</Link>, despues <Link to={'/login'}>logearte</Link> y despues podrás acceder al <Link to={'/private'}>area privada</Link></h2>
+			<span className="nav nav-link" onClick={handleClick}>area privada</span>
 		</div>
 	);
 }; 

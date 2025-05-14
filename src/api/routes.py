@@ -6,7 +6,8 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from sqlalchemy import select
-from flask_jwt_extended import create_access_token,get_jwt_identity,jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
 
@@ -23,69 +24,88 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/register',methods = ['POST'])
+@api.route('/hellov2', methods=['GET'])
+def handle_hellov2():
+
+    return jsonify("mensaje de hellov2"), 200
+
+
+@api.route('/register', methods=['POST'])
 def register():
     try:
+        #extraer datos del pedido
         data = request.json
-        if not data['email'] or not data['password']:
-            raise Exception['missing data']
-        
+        #verificar que tenemos todos los datos
+        if not data['email'] or not data['password']: 
+            raise Exception("missing data")
+        #verificar si el email ya esta registrado
         stm = select(User).where(User.email==data['email'])
+        #scalar devuelve en objeto, sino se devolveria el query a la bd como tupla
         existing_user = db.session.execute(stm).scalar_one_or_none()
         if existing_user:
-            return jsonify({'error':'email en uso, intenta logearte'}), 418
+            return jsonify({"error": "email en uso, intenta logearte"}), 418
+        
+        #hash password
+        hashed_password = generate_password_hash(data['password'])
+
+
+        #creamos un nuevo registro
         new_user = User(
             email=data['email'],
-            password=data['password'],
+            password=hashed_password,
             is_active=True
-        )        
+        )
+        #añadimos registro nuevo a la bd
         db.session.add(new_user)
+        #almacenamos cambios en la bd
         db.session.commit()
-        return jsonify({"success":"True"})
-
+        #retornamos usuario nuevo serializado
+        return jsonify({"success": True})
+        
     except Exception as e:
         print(e)
-        return jsonify({'Error':'Algo pasó'})
-    
+        return jsonify({"Error": 'algo paso'})
 
-@api.route('/login',methods = ['POST'])
+
+
+@api.route('/login', methods=['POST'])
 def login():
     try:
-        
+        #extraer datos del pedido
         data = request.json
-        
-        if not data['email'] or not data['password']:
-            raise Exception['missing data']
-        
+        #verificar que tenemos todos los datos
+        if not data['email'] or not data['password']: 
+            raise Exception("missing data")
+        #verificar si el email ya esta registrado
         stm = select(User).where(User.email==data['email'])
         user = db.session.execute(stm).scalar_one_or_none()
-        
+        #si no tenemos usuario mandamos que se registre
         if not user:
-            return jsonify({'error':'el email no está registrado'}), 418
-        
-        if user.password != data['password']:
-            return jsonify({'error':'la contraseña no es correcta'}), 418
-        
+            return jsonify({"error": "el email no esta registrado"}), 418
+        #verificamos contraseña de la bd con la que recibimos
+        if not check_password_hash(user.password, data['password']):
+            return jsonify({"error": "email/contraseña no valido"}), 418
 
-        #generamos token, tiene que ser un str no puede ser un número
-        token = create_access_token(identity = str(user.id))
+       #generamos token. Tiene que ser un str porque asi lo pide la identidad, no puede ser un numero
+        token = create_access_token(identity=str(user.id))
+  
 
-        return jsonify({"success":"True", "token":token})
-
+        return jsonify({"success": True, "token": token})
     except Exception as e:
         print(e)
-        return jsonify({'Error':'Algo pasó'})
-    
+        return jsonify({"Error": 'algo paso'})
 
-#endopoint privado
-@api.route('/private', methods = ["GET"])
-@jwt_required()
+
+#endpoint privado
+# sera privado cuando necesitemos saber QUIEN es el que accede
+# para metodos POST, PUT, DELETE y GET si el get es para devolver informacion del usuario o relacionada al usuario
+@api.route('/private', methods=['GET'])
+@jwt_required() #obliga a enviar el token desde el front
 def get_user_info():
     id = get_jwt_identity()
     stm = select(User).where(User.id == id)
     user = db.session.execute(stm).scalar_one_or_none()
     if not user:
-        return jsonify({'success':'false', 'msg':'que paso'})
-    
-    print(id)
-    return jsonify({"success":"True", 'user': user.serialize()})
+        return jsonify({"success": False, 'msg': 'que paso????'})
+
+    return jsonify({"success": True, 'user':user.serialize()})

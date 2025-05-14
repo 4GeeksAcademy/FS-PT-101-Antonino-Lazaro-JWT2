@@ -1,7 +1,10 @@
 import { useState } from "react";
 import userServices from "../services/userServices";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+
+    const navigate = useNavigate()
 
     const [formData,setFormData] = useState({
         email: "",
@@ -20,7 +23,10 @@ export const Login = () => {
         e.preventDefault();
         userServices.login(formData).then(data => {
             //almacenamos el token en el local storage
-            localStorage.setItem('token', data.token)
+            if (data.success){
+                navigate('/private')
+            }
+
         })
     }
 

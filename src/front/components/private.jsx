@@ -1,13 +1,35 @@
+import { useEffect } from "react"
 import useGlobalReducer from "../hooks/useGlobalReducer"
+import userServices from "../services/userServices"
+import { useNavigate } from "react-router-dom"
 
 export const Private = () => {
+    const navigate = useNavigate()
     const { store, dispatch } = useGlobalReducer()
+
+
+    useEffect(()=>{
+        if (!localStorage.getItem('token')){
+            return navigate('/login')
+        }
+
+        userServices.getUserInfo().then(data=> {
+            if (!data.success){ 
+                return navigate('/login')
+            }
+            dispatch({type: 'getUserInfo', payload: data.user})
+        })
+    },[])
+
     const handleLogout =()=>{
-        dispatch({'type':'logout'})
+        dispatch({type:'logout'})
+        navigate('/')
     }
     return (
-        <>
-            <h3>{store.user?.email}</h3>
+        <><h3>Esto es privado</h3>
+        {store.user && 
+            <h3>{store.user.email}</h3>
+        }
             <button onClick={handleLogout}>logout</button>
         </>
     )
