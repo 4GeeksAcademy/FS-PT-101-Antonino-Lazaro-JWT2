@@ -1,21 +1,40 @@
 import { Link } from "react-router-dom";
 import image from "../assets/img/pruebaverde.png"
 
+/*<h2 className="text-white mb-4">
+	WELCOME TO <span className="text-neon">GYM BUDDY</span>
+</h2>
+<Link to="/login" className="btn neon-btn mt-3">
+	START
+</Link> <div className="h-100 custom-gym-img" style={{ background: 'url(\'' + image + '\')', flex: 1, backgroundPosition: 'center' }}></div>
+			</div>*/
+
 export const Home = () => {
 	return (
-		<div className="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-center gap-4 p-0 back-img">
-			<img
-				src={image}
-				alt="gym"
-				className="custom-gym-img img-fluid me-auto"
-			/>
-			<div className="startBox rounded-4 bg-dark bg-opacity-75 text-center col-12 col-md-4 me-auto">
-				<h2 className="text-white mb-4">
-					WELCOME TO <span className="text-neon">GYM BUDDY</span>
-				</h2>
-				<Link to="/login" className="btn neon-btn w-100 w-md-50 mt-3">
-					START
-				</Link>
+		<div className="container-fluid h-100">
+			<div className="row d-flex h-100 w-100">
+				{/* Imagen de fondo responsiva */}
+				<div
+					className="bg-warning col-12 col-md-6 d-flex justify-content-center align-items-center custom-gym-img"
+					style={{
+						background: `url(${image}) center/cover no-repeat`,
+						flex: 1,
+						minHeight: "300px" // Para evitar que quede muy comprimido en pantallas pequeñas
+					}}
+				>
+				</div>
+
+				{/* Contenedor de texto responsivo */}
+				<div className="text-white d-flex flex-column justify-content-center align-items-center col-12 col-md-6 text-center">
+					<div className="startBox rounded p-4 w-75">
+						<h2 className="text-white mb-4">
+							WELCOME TO <span className="text-neon">GYM BUDDY</span>
+						</h2>
+						<Link to="/login" className="btn neon-btn mt-3">
+							START
+						</Link>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

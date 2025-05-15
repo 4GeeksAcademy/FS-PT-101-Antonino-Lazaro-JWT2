@@ -1,15 +1,6 @@
 body {
   background-color: black;
 }
-.back-img {
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* Permite mejor ajuste en móviles */
-  padding: 2rem; /* Espaciado adicional */
-}
-
 
 .neon-btn {
   background-color: #39ff14;
@@ -44,31 +35,24 @@ body {
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
 }
-
 .neon-btn-logout:hover {
   background-color: #5dff5d;
   box-shadow: 0 0 10px #5dff5d, 0 0 15px #5dff5d, 0 0 25px #5dff5d;
   transform: scale(1.05);
 }
 
-
 .custom-gym-img {
-  width: 50vw; /* En pantallas grandes, ocupará la mitad del ancho */
-  height: 91vh; /* Siempre ocupará el alto completo */
-  object-fit: cover;
   transition: box-shadow 0.3s ease;
   box-shadow:
     -2px 0 5px #00ff00,
     2px 0 5px #00ff00,
     0 -2px 5px #00ff00;
 }
-
 .navCss {
   background-color: black;
   box-shadow: 0 3px 10px #00ff00;
   animation: glowBorder 2s infinite alternate;
 }
-
 .footerCss {
   background-color: black;
   box-shadow:
@@ -79,7 +63,6 @@ body {
   z-index: 10;             /* Para que esté por encima del contenido */
   
 }
-
 @keyframes glowBorder {
   from {
     box-shadow: 0 3px 5px #009900;
@@ -106,9 +89,24 @@ body {
   background-color: black;
 }
 /* Ajuste para pantallas pequeñas */
-@media (max-width: 768px) {
-  .custom-gym-img {
-    width: 100vw; /* En móviles, ocupa todo el ancho */
-    height: 60vh; /* Reducimos la altura para evitar cortes */
-  }
+
+.div-general{
+  height: 100vh;
+}
+
+.divPadre{
+  flex:1;
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+}
+.divhijo{
+  flex: 1;
+  display: flex;
+  max-height: 100%;
+}
+.divLayout{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
