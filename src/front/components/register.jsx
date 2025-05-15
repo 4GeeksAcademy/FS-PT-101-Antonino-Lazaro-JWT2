@@ -22,35 +22,46 @@ export const Register = () => {
     }
 
     return (
-        <div className="startBox rounded mt-4">
-            <form
-                onSubmit={handleSubmit}
-            >
-                <h2 className="text-2xl mb-6 text-center pt-2 text-white">Reister</h2>
-                <div className="d-flex justify-content-center align-items-center py-4 gap-3">
-                    <input
-                        placeholder="email"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="bg-gray-100 text-gray-700 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-amber-500"
-                    />
-                    <input
-                        placeholder="password"
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        className="bg-gray-100 text-gray-700 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-amber-500 mb-6"
-                    />
-                    <input
-                        type="submit"
-                        value="Register"
-                        className="bg-amber-500 text-dark font-semibold py-2 px-4 rounded hover:bg-amber-400 cursor-pointer transition duration-200"
-                    />
+        <div className="container mt-4">
+            <div className="row justify-content-center p-4">
+                <div className="col-12 col-md-6 startBox rounded p-4">
+                    <form onSubmit={handleSubmit}>
+                        <h2 className="text-center text-white mb-4">Register</h2>
+
+                        <div className="row g-3">
+                            <div className="col-12">
+                                <input
+                                    placeholder="Email"
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="form-control"
+                                />
+                            </div>
+
+                            <div className="col-12">
+                                <input
+                                    placeholder="Password"
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    className="form-control"
+                                />
+                            </div>
+
+                            <div className="col-12 d-flex justify-content-center">
+                                <input
+                                    type="submit"
+                                    value="Register"
+                                    className="py-2 px-4 rounded cursor-pointer"
+                                />
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }

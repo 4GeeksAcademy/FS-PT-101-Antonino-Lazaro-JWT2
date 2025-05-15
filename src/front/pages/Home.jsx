@@ -9,11 +9,11 @@ export const Home = () => {
 				alt="gym"
 				className="custom-gym-img img-fluid me-auto"
 			/>
-			<div className="startBox rounded-4 bg-dark bg-opacity-75 text-center col-12 col-md-5 me-auto">
+			<div className="startBox rounded-4 bg-dark bg-opacity-75 text-center col-12 col-md-4 me-auto">
 				<h2 className="text-white mb-4">
 					WELCOME TO <span className="text-neon">GYM BUDDY</span>
 				</h2>
-				<Link to="/login" className="btn neon-btn w-100 w-md-50">
+				<Link to="/login" className="btn neon-btn w-100 w-md-50 mt-3">
 					START
 				</Link>
 			</div>

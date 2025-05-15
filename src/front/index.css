@@ -1,6 +1,8 @@
+body {
+  background-color: black;
+}
 .back-img {
   background-color: black;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +54,7 @@
 
 .custom-gym-img {
   width: 50vw; /* En pantallas grandes, ocupará la mitad del ancho */
-  height: 100vh; /* Siempre ocupará el alto completo */
+  height: 91vh; /* Siempre ocupará el alto completo */
   object-fit: cover;
   transition: box-shadow 0.3s ease;
   box-shadow:
