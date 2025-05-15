@@ -1,12 +1,13 @@
 .back-img {
-  width: 100%;
   background-color: black;
+  min-height: 100vh;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: end;
-  padding-right: 10%;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Permite mejor ajuste en móviles */
+  padding: 2rem; /* Espaciado adicional */
 }
+
 
 .neon-btn {
   background-color: #39ff14;
@@ -17,6 +18,8 @@
   box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14;
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
+  width: 100%;
+  max-width: 300px;
 }
 
 .neon-btn:hover {
@@ -47,19 +50,16 @@
 }
 
 
-img {
-  width: 55%;
-  height: auto;
+.custom-gym-img {
+  width: 50vw; /* En pantallas grandes, ocupará la mitad del ancho */
+  height: 100vh; /* Siempre ocupará el alto completo */
+  object-fit: cover;
   transition: box-shadow 0.3s ease;
-
-  /* Sombra solo hacia arriba, izquierda y derecha */
   box-shadow:
-    -2px 0 5px #00ff00,  /* izquierda */
-    2px 0 5px #00ff00,   /* derecha */
-    0 -2px 5px #00ff00;  /* arriba */
+    -2px 0 5px #00ff00,
+    2px 0 5px #00ff00,
+    0 -2px 5px #00ff00;
 }
-
-
 
 .navCss {
   background-color: black;
@@ -69,6 +69,13 @@ img {
 
 .footerCss {
   background-color: black;
+  box-shadow:
+    0 -2px 5px #00ff00;  /* arriba */
+  position: fixed;         /* Se "sale" del flujo como el navbar */
+  bottom: 0;               /* Pegado al borde inferior */
+  width: 100%;             /* Que cubra todo el ancho */
+  z-index: 10;             /* Para que esté por encima del contenido */
+  
 }
 
 @keyframes glowBorder {
@@ -86,12 +93,20 @@ img {
   flex-direction: column;
   align-items: center;
   background-color: #1e1e1e;
-  padding: 2%;
   box-shadow: 0 0 5px 2px #00ff00;
   /* Glow verde uniforme alrededor */
   transition: box-shadow 0.3s ease;
+  align-self: center;
+  padding: 2%;
 }
 
 .loginPage {
   background-color: black;
+}
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  .custom-gym-img {
+    width: 100vw; /* En móviles, ocupa todo el ancho */
+    height: 60vh; /* Reducimos la altura para evitar cortes */
+  }
 }

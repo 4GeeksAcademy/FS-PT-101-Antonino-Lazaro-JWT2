@@ -26,7 +26,7 @@ export const Register = () => {
             <form
                 onSubmit={handleSubmit}
             >
-                <h2 className="text-2xl mb-6 text-center pt-2 text-white">Rgister</h2>
+                <h2 className="text-2xl mb-6 text-center pt-2 text-white">Reister</h2>
                 <div className="d-flex justify-content-center align-items-center py-4 gap-3">
                     <input
                         placeholder="email"
