@@ -7,6 +7,7 @@
   padding-right: 10%;
   justify-content: space-between;
 }
+
 .neon-btn {
   background-color: #39ff14;
   color: #000;
@@ -25,45 +26,72 @@
   transform: scale(1.05);
 }
 
+.neon-btn-logout {
+  background-color: #39ff14;
+  font-weight: bold;
+  font-size: 0.75rem;
+  /* Tamaño de texto más pequeño */
+  padding: 0.4rem 1rem;
+  /* Menos espacio interno */
+  border-radius: 30px;
+  /* Acorde al tamaño reducido */
+  box-shadow: 0 0 6px #39ff14, 0 0 12px #39ff14, 0 0 20px #39ff14;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.neon-btn-logout:hover {
+  background-color: #5dff5d;
+  box-shadow: 0 0 10px #5dff5d, 0 0 15px #5dff5d, 0 0 25px #5dff5d;
+  transform: scale(1.05);
+}
+
+
 img {
   width: 55%;
   height: auto;
-
-  box-shadow:
-    2px 0 10px -4px #004d00,      /* Verde muy oscuro, base sutil */
-    2px 0 12px -6px #00ff00;      /* Mismo verde neón del navbar */
-
   transition: box-shadow 0.3s ease;
+
+  /* Sombra solo hacia arriba, izquierda y derecha */
+  box-shadow:
+    -2px 0 5px #00ff00,  /* izquierda */
+    2px 0 5px #00ff00,   /* derecha */
+    0 -2px 5px #00ff00;  /* arriba */
 }
+
 
 
 .navCss {
-    background-color: black;
-    box-shadow: 0 3px 10px #00ff00;
-    animation: glowBorder 2s infinite alternate;
+  background-color: black;
+  box-shadow: 0 3px 10px #00ff00;
+  animation: glowBorder 2s infinite alternate;
 }
 
-.footerCss{
-    background-color: black;
+.footerCss {
+  background-color: black;
 }
 
 @keyframes glowBorder {
-    from {
-        box-shadow: 0 3px 5px #009900;
-    }
-    to {
-        box-shadow: 0 3px 15px #00ff00;
-    }
+  from {
+    box-shadow: 0 3px 5px #009900;
+  }
+
+  to {
+    box-shadow: 0 3px 15px #00ff00;
+  }
 }
-.startBox{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #1e1e1e;
-    padding: 2%;
-    box-shadow: 0 0 12px 0px #00ff00; /* Glow verde uniforme alrededor */
+
+.startBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e1e1e;
+  padding: 2%;
+  box-shadow: 0 0 5px 2px #00ff00;
+  /* Glow verde uniforme alrededor */
   transition: box-shadow 0.3s ease;
 }
 
-
-
+.loginPage {
+  background-color: black;
+}

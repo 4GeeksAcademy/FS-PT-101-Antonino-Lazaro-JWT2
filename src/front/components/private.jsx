@@ -8,30 +8,31 @@ export const Private = () => {
     const { store, dispatch } = useGlobalReducer()
 
 
-    useEffect(()=>{
-        if (!localStorage.getItem('token')){
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
             return navigate('/login')
         }
 
-        userServices.getUserInfo().then(data=> {
-            if (!data.success){ 
+        userServices.getUserInfo().then(data => {
+            if (!data.success) {
                 return navigate('/login')
             }
-            dispatch({type: 'getUserInfo', payload: data.user})
+            dispatch({ type: 'getUserInfo', payload: data.user })
         })
-    },[])
+    }, [])
 
-    const handleLogout =()=>{
-        dispatch({type:'logout'})
+    const handleLogout = () => {
+        dispatch({ type: 'logout' })
         navigate('/')
     }
-    
+
     return (
-        <><h3>Esto es privado</h3>
-        {store.user && 
-            <h3>{store.user.email}</h3>
-        }
-            <button onClick={handleLogout}>logout</button>
-        </>
+        <div className="d-flex gap-3 flex-column align-items-center">
+            <h3 className="text-white">Bienvenido</h3>
+            {store.user &&
+                <h3 className="text-white fw-bold">{store.user.email}</h3>
+            }
+            <button className="neon-btn-logout" onClick={handleLogout}>logout</button>
+        </div>
     )
 }

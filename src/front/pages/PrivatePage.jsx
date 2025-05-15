@@ -1,9 +1,8 @@
 import { Private } from "../components/private"
 export const PrivatePage = () => {
     return (
-        <>
-            <h3>Privado</h3>
+        <div className="d-flex flex-column align-items-center pt-4 loginPage">
             <Private />
-        </>
+        </div>
     )
 }

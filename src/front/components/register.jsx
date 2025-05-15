@@ -22,12 +22,11 @@ export const Register = () => {
     }
 
     return (
-        <div className="bg-cream min-h-screen flex align-items-center text-gray-800 font-sans p-4 w-50 rounded" style={{ backgroundColor: '#fdf6e3' }}>
+        <div className="startBox rounded mt-4">
             <form
                 onSubmit={handleSubmit}
-                className="bg-white d-flex flex-column rounded p-8 rounded-xl shadow-lg justify-items-center w-80 flex flex-col border border-gray-200"
             >
-                <h2 className="text-2xl mb-6 text-center font-semibold pt-4">Register</h2>
+                <h2 className="text-2xl mb-6 text-center pt-2 text-white">Rgister</h2>
                 <div className="d-flex justify-content-center align-items-center py-4 gap-3">
                     <input
                         placeholder="email"

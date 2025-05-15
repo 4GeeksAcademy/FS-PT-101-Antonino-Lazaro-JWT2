@@ -28,7 +28,7 @@ userServices.login = async (formData) => {
       },
       body: JSON.stringify(formData),
     });
-    if (!resp.ok) throw Error("Something went wrong");
+    if (!resp.ok) throw alert("Wrong email/password");
     const data = await resp.json();
     console.log(data);
     localStorage.setItem('token', data.token)
